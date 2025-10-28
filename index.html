@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BigWhale Gym — Prototype</title>
+  <!-- Tailwind via CDN (for prototyping) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="BigWhale — Strength, Community, Results. Gym prototype built with HTML, Tailwind CSS and vanilla JS." />
+  <style>
+    /* Small custom styles for demo */
+    .hero-bg { background-image: linear-gradient(90deg, rgba(2,6,23,0.6), rgba(9,20,33,0.6)), url('https://images.unsplash.com/photo-1554284126-aa88f22d8b85?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s='); background-size: cover; background-position: center; }
+    /* Simple carousel animation helper */
+    .carousel-track { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="antialiased text-slate-900 bg-slate-50">
+
+<!-- Header / Nav -->
+<header class="bg-white shadow-sm sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center gap-4">
+        <a href="#home" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold">BW</div>
+          <span class="font-semibold text-lg">BigWhale</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#classes" class="hover:text-sky-600">Classes</a>
+        <a href="#pricing" class="hover:text-sky-600">Pricing</a>
+        <a href="#trainers" class="hover:text-sky-600">Trainers</a>
+        <a href="#programs" class="hover:text-sky-600">Programs</a>
+        <a href="#contact" class="hover:text-sky-600">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="trialBtn" class="hidden md:inline-block bg-sky-600 text-white px-4 py-2 rounded-md shadow">Start Free Trial</button>
+        <button id="mobileMenuBtn" class="md:hidden p-2" aria-label="Open menu"> 
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden border-t">
+    <div class="px-4 py-3 flex flex-col gap-2">
+      <a href="#classes" class="py-2">Classes</a>
+      <a href="#pricing" class="py-2">Pricing</a>
+      <a href="#trainers" class="py-2">Trainers</a>
+      <a href="#programs" class="py-2">Programs</a>
+      <a href="#contact" class="py-2">Contact</a>
+      <button id="mobileTrial" class="mt-2 bg-sky-600 text-white px-4 py-2 rounded-md">Start Free Trial</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero-bg text-white py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">BigWhale — Build Strength. Gain Confidence.</h1>
+        <p class="mt-4 text-lg max-w-xl">Lagos' premier strength & community gym. Certified coaches. 24/7 access. Programs for every level.</p>
+
+        <div class="mt-6 flex gap-3">
+          <button id="ctaTrial" class="bg-white text-slate-900 px-5 py-3 rounded-md font-medium shadow">Start Free Trial</button>
+          <a href="#classes" class="inline-flex items-center px-4 py-3 border rounded-md">View Classes</a>
+        </div>
+
+        <div class="mt-6 flex gap-4 text-sm text-slate-200">
+          <div><strong class="text-white">2,300+</strong> members</div>
+          <div><strong class="text-white">98%</strong> satisfaction</div>
+          <div><strong class="text-white">24/7</strong> access</div>
+        </div>
+      </div>
+
+      <div class="hidden md:block">
+        <div class="rounded-xl overflow-hidden shadow-2xl">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Gym" class="w-full h-80 object-cover" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quick Benefits -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="font-semibold">Certified Coaches</h3>
+      <p class="mt-2 text-sm text-slate-600">Personalised plans from highly qualified trainers.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="font-semibold">Top-tier Equipment</h3>
+      <p class="mt-2 text-sm text-slate-600">Olympic platforms, cardio zone & recovery studio.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="font-semibold">Flexible Memberships</h3>
+      <p class="mt-2 text-sm text-slate-600">Monthly, annual, and student plans with easy cancellations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing" class="bg-gradient-to-b from-slate-50 to-white py-12">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold">Membership Plans</h2>
+      <p class="text-sm text-slate-600 mt-2">Choose the right plan — switch anytime.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Basic -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-semibold">Basic</h4>
+        <div class="mt-4 text-3xl font-bold">₦10,000 <span class="text-sm font-medium">/mo</span></div>
+        <ul class="mt-4 text-sm text-slate-600 space-y-2">
+          <li>Gym access (weekday hours)</li>
+          <li>1 class / week</li>
+          <li>No personal training</li>
+        </ul>
+        <button class="mt-6 w-full bg-slate-900 text-white py-2 rounded" onclick="joinPlan('Basic')">Join Now</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h4 class="font-semibold">Pro</h4>
+        <div class="mt-4 text-3xl font-bold">₦18,000 <span class="text-sm font-medium">/mo</span></div>
+        <ul class="mt-4 text-sm text-slate-600 space-y-2">
+          <li>24/7 gym access</li>
+          <li>3 classes / week</li>
+          <li>1 PT session / month</li>
+        </ul>
+        <button class="mt-6 w-full bg-sky-600 text-white py-2 rounded" onclick="joinPlan('Pro')">Start Free Trial</button>
+      </div>
+
+      <!-- VIP -->
+      <div class="bg-white p-6 rounded-lg shadow border-2 border-sky-600">
+        <h4 class="font-semibold">VIP</h4>
+        <div class="mt-4 text-3xl font-bold">₦40,000 <span class="text-sm font-medium">/mo</span></div>
+        <ul class="mt-4 text-sm text-slate-600 space-y-2">
+          <li>All access + classes unlimited</li>
+          <li>4 PT sessions / month</li>
+          <li>Sauna & locker access</li>
+        </ul>
+        <button class="mt-6 w-full bg-indigo-700 text-white py-2 rounded" onclick="joinPlan('VIP')">Book Tour</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Classes & Schedule -->
+<section id="classes" class="py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center mb-6">
+      <div>
+        <h2 class="text-2xl font-bold">Classes & Schedule</h2>
+        <p class="text-sm text-slate-600">Filter by type or trainer and book your spot.</p>
+      </div>
+      <div class="flex gap-2 items-center">
+        <select id="classFilter" class="border rounded px-3 py-2 text-sm">
+          <option value="all">All classes</option>
+          <option value="strength">Strength</option>
+          <option value="hiit">HIIT</option>
+          <option value="yoga">Yoga</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="schedule" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- sample class cards -->
+      <article class="bg-white p-4 rounded shadow" data-type="strength">
+        <h3 class="font-semibold">Barbell Basics</h3>
+        <p class="text-sm text-slate-600">Mon, Wed, Fri — 7:00 AM (60 mins)</p>
+        <p class="mt-2 text-sm">Learn proper technique for squat, deadlift & press.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="px-3 py-1 border rounded text-sm" onclick="addToCalendar('Barbell Basics')">Add to calendar</button>
+          <button class="ml-auto bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="openBooking('Barbell Basics')">Book</button>
+        </div>
+      </article>
+
+      <article class="bg-white p-4 rounded shadow" data-type="hiit">
+        <h3 class="font-semibold">HIIT Blast</h3>
+        <p class="text-sm text-slate-600">Tue, Thu — 6:00 PM (45 mins)</p>
+        <p class="mt-2 text-sm">Circuit-based conditioning to improve power & stamina.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="px-3 py-1 border rounded text-sm" onclick="addToCalendar('HIIT Blast')">Add to calendar</button>
+          <button class="ml-auto bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="openBooking('HIIT Blast')">Book</button>
+        </div>
+      </article>
+
+      <article class="bg-white p-4 rounded shadow" data-type="yoga">
+        <h3 class="font-semibold">Recovery Yoga</h3>
+        <p class="text-sm text-slate-600">Sat — 10:00 AM (60 mins)</p>
+        <p class="mt-2 text-sm">Mobility, breathing, and active recovery work.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="px-3 py-1 border rounded text-sm" onclick="addToCalendar('Recovery Yoga')">Add to calendar</button>
+          <button class="ml-auto bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="openBooking('Recovery Yoga')">Book</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Trainers -->
+<section id="trainers" class="py-12 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold">Our Trainers</h2>
+      <p class="text-sm text-slate-600">Certified professionals helping members reach their goals.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- trainer card -->
+      <div class="bg-white rounded-lg p-4 shadow">
+        <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b85?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Aisha Okoye</h4>
+        <p class="text-sm text-slate-600">Strength coach • MSc Sports Science</p>
+        <p class="mt-2 text-sm">Specialties: powerlifting, hypertrophy, female strength.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Aisha')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Aisha')">Book 1:1</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 shadow">
+        <img src="https://images.unsplash.com/photo-1546484959-f5e5f02d7b3b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Emeka Chukwu</h4>
+        <p class="text-sm text-slate-600">Conditioning coach • BSc PE</p>
+        <p class="mt-2 text-sm">Specialties: HIIT, endurance, group classes.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Emeka')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Emeka')">Book 1:1</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg p-4 shadow">
+        <img src="https://images.unsplash.com/photo-1545167622-3e6e3d2bf9a6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Chioma N.</h4>
+        <p class="text-sm text-slate-600">Mobility & rehab specialist</p>
+        <p class="mt-2 text-sm">Specialties: rehab, mobility, injury prevention.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Chioma')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Chioma')">Book 1:1</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery / Facilities -->
+<section id="gallery" class="py-12">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold mb-4">Facilities & Gallery</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <img src="https://images.unsplash.com/photo-1546484959-f5e5f02d7b3b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
+      <img src="https://images.unsplash.com/photo-1546484959-0b9e2b1a6a3f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
+      <img src="https://images.unsplash.com/photo-1541534401786-3f4c0b2b8f9b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
+      <img src="https://images.unsplash.com/photo-1546484959-d5c6a6b1d8ad?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section id="programs" class="py-12 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold mb-4">Programs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">Beginner Strength</h3>
+        <p class="mt-2 text-sm text-slate-600">8-week program — focus on fundamentals and consistency.</p>
+        <button class="mt-3 text-sm border rounded px-3 py-1" onclick="learnMore('Beginner Strength')">Learn more</button>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">Athlete Performance</h3>
+        <p class="mt-2 text-sm text-slate-600">Custom program for athletes: power, speed, agility.</p>
+        <button class="mt-3 text-sm border rounded px-3 py-1" onclick="learnMore('Athlete Performance')">Learn more</button>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">Rehab & Mobility</h3>
+        <p class="mt-2 text-sm text-slate-600">Mobility-first approach to pain-free training.</p>
+        <button class="mt-3 text-sm border rounded px-3 py-1" onclick="learnMore('Rehab & Mobility')">Learn more</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">Success Stories</h2>
+    <div class="carousel-track flex gap-4 overflow-x-auto py-4">
+      <blockquote class="min-w-[80%] md:min-w-[40%] bg-white p-6 rounded shadow">
+        <p class="italic">"I gained 15kg of strength in 6 months. The coaches at BigWhale know their stuff."</p>
+        <footer class="mt-4 font-semibold">— Chike, Member</footer>
+      </blockquote>
+
+      <blockquote class="min-w-[80%] md:min-w-[40%] bg-white p-6 rounded shadow">
+        <p class="italic">"Supportive community and solid programming. Can't recommend enough."</p>
+        <footer class="mt-4 font-semibold">— Ngozi, Member</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- Blog teaser -->
+<section id="blog" class="py-12 bg-slate-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold mb-4">From the Blog</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <article class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">How to pick the right gym shoes</h3>
+        <p class="mt-2 text-sm text-slate-600">Short excerpt with a CTA to read more.</p>
+      </article>
+      <article class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">Nutrition for strength gains</h3>
+        <p class="mt-2 text-sm text-slate-600">Short excerpt with a CTA to read more.</p>
+      </article>
+      <article class="bg-white p-4 rounded shadow">
+        <h3 class="font-semibold">Preparing for your first competition</h3>
+        <p class="mt-2 text-sm text-slate-600">Short excerpt with a CTA to read more.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-12">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold mb-4">Contact & Locations</h2>
+    <div class="bg-white p-6 rounded shadow grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form id="contactForm" class="space-y-4">
+        <div>
+          <label class="text-sm">Name</label>
+          <input name="name" type="text" required class="w-full border rounded px-3 py-2 mt-1" />
+        </div>
+        <div>
+          <label class="text-sm">Email</label>
+          <input name="email" type="email" required class="w-full border rounded px-3 py-2 mt-1" />
+        </div>
+        <div>
+          <label class="text-sm">Message</label>
+          <textarea name="message" rows="4" required class="w-full border rounded px-3 py-2 mt-1"></textarea>
+        </div>
+        <button type="submit" class="bg-sky-600 text-white px-4 py-2 rounded">Send Message</button>
+      </form>
+
+      <div>
+        <h4 class="font-semibold">BigWhale Lagos</h4>
+        <p class="text-sm text-slate-600">123 Harbour Road, Lagos</p>
+        <p class="text-sm text-slate-600">Mon — Sun: 5:00 AM — 11:00 PM</p>
+        <p class="mt-2 text-sm">Phone: +234 800 000 0000</p>
+        <div class="mt-4">
+          <iframe class="w-full h-48 rounded" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.123456789!2d3.342!3d6.524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNkM2wJAgTWFw!5e0!3m2!1sen!2sng!4v0000000000000" aria-hidden="false"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-200 py-8 mt-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div>
+      <h5 class="font-semibold text-white">BigWhale</h5>
+      <p class="text-sm mt-2">Strength, community & results. © <span id="year"></span> BigWhale</p>
+    </div>
+    <div>
+      <h6 class="font-semibold">Links</h6>
+      <ul class="mt-2 text-sm space-y-1">
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h6 class="font-semibold">Newsletter</h6>
+      <p class="text-sm mt-2">Sign up for offers and updates.</p>
+      <form id="newsletterForm" class="mt-3 flex gap-2">
+        <input name="email" type="email" required placeholder="you@email.com" class="px-3 py-2 rounded-l border w-full" />
+        <button class="bg-sky-600 px-4 py-2 rounded-r text-white">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Booking Modal (simple) -->
+<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
+  <div class="bg-white rounded-lg w-full max-w-md p-6">
+    <h3 class="text-lg font-semibold mb-2">Book Class</h3>
+    <p id="bookingTitle" class="text-sm text-slate-600 mb-4"></p>
+
+    <form id="bookingForm" class="space-y-3">
+      <input type="text" name="name" placeholder="Your name" required class="w-full border rounded px-3 py-2" />
+      <input type="email" name="email" placeholder="Email" required class="w-full border rounded px-3 py-2" />
+      <div class="flex gap-2">
+        <button type="submit" class="bg-sky-600 text-white px-4 py-2 rounded">Confirm Booking</button>
+        <button type="button" class="border px-4 py-2 rounded" onclick="closeBooking()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Minimal Scripts -->
+<script>
+  // small helpers and demo interactions
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+
+  // CTA trial hooks
+  ['trialBtn','ctaTrial','mobileTrial'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.addEventListener('click', ()=> alert('Trial signup flow - implement backend/Stripe or payment provider.'));
+  });
+
+  // schedule filtering
+  const classFilter = document.getElementById('classFilter');
+  classFilter.addEventListener('change', ()=>{
+    const val = classFilter.value;
+    document.querySelectorAll('#schedule article').forEach(card=>{
+      if(val === 'all' || card.dataset.type === val) card.style.display = '';
+      else card.style.display = 'none';
+    });
+  });
+
+  // booking modal
+  const bookingModal = document.getElementById('bookingModal');
+  const bookingTitle = document.getElementById('bookingTitle');
+  let bookingFor = null;
+  function openBooking(title){ bookingFor = title; bookingTitle.textContent = title; bookingModal.classList.remove('hidden'); }
+  function closeBooking(){ bookingFor = null; bookingModal.classList.add('hidden'); }
+  window.openBooking = openBooking; window.closeBooking = closeBooking;
+
+  document.getElementById('bookingForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const form = e.target; const name = form.name.value; const email = form.email.value;
+    // mock saving booking — in production, send to backend / booking engine
+    const bookings = JSON.parse(localStorage.getItem('bw_bookings') || '[]');
+    bookings.push({title: bookingFor, name, email, at: new Date().toISOString()});
+    localStorage.setItem('bw_bookings', JSON.stringify(bookings));
+    alert('Booking confirmed — we saved it locally (demo). Implement backend to store and send confirmation.');
+    closeBooking(); form.reset();
+  });
+
+  // contact form demo
+  document.getElementById('contactForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    alert('Message sent (demo). Hook this to your email/CRM (e.g., HubSpot, Mailchimp or backend).');
+    e.target.reset();
+  });
+
+  // newsletter demo
+  document.getElementById('newsletterForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    alert('Subscribed to newsletter (demo). Integrate with Mailchimp/Klaviyo for production.');
+  });
+
+  // simple program actions
+  window.learnMore = (name)=> alert(name + ' — open program page or modal with details.');
+  window.viewProfile = (name)=> alert('Open profile for ' + name + '.');
+  window.bookTrainer = (name)=> alert('Open 1:1 booking flow for ' + name + '.');
+
+  // join plan demo
+  window.joinPlan = (plan)=> alert('Selected plan: ' + plan + '. Integrate payment provider for signup.');
+
+  // add to calendar (very simple ICS file creation and download)
+  window.addToCalendar = (title)=>{
+    const start = new Date(); start.setDate(start.getDate()+1); // demo next-day
+    const end = new Date(start.getTime()+60*60*1000);
+    const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${formatICS(start)}\nDTEND:${formatICS(end)}\nEND:VEVENT\nEND:VCALENDAR`;
+    const blob = new Blob([ics], {type: 'text/calendar'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = title + '.ics'; a.click();
+  };
+  function formatICS(d){
+    const pad=(n)=>String(n).padStart(2,'0');
+    return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
+  }
+
+</script>
+</body>
+</html>
