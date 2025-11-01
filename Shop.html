@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop — BigWhale</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto p-4 flex justify-between">
+      <a href="index.html" class="font-bold">BigWhale</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-4">
+    <h1 class="text-2xl font-bold">Shop</h1>
+    <p class="text-sm text-slate-600">Apparel, accessories and gift cards.</p>
+
+    <div class="mt-6 grid md:grid-cols-3 gap-4">
+      <div class="bg-white p-4 rounded shadow">
+        <div class="w-full h-40 bg-slate-200 rounded"></div>
+        <h3 class="mt-3 font-semibold">BW Tee</h3>
+        <p class="mt-2">₦3,500</p>
+        <button onclick="addToCart('BW Tee')" class="mt-3 bg-sky-600 text-white px-3 py-2 rounded">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

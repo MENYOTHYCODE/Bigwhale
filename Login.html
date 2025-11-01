@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | PowerFit Gym</title>
+  <script src="TailwindLib.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Main Section -->
+  <section class="flex flex-col md:flex-row h-screen">
+    
+    <!-- Left Image Section -->
+    <div class="md:w-1/2 h-64 md:h-auto relative">
+      <img 
+        src="Assets/gym workout.jpg" 
+        alt="Workout motivation" 
+        class="w-full h-full object-cover"
+      />
+      <!-- Optional overlay text -->
+      <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white p-6">
+        <h1 class="text-3xl md:text-4xl font-bold mb-3">Welcome Back, Champion!</h1>
+        <p class="text-gray-200">Your goals are waiting — let’s get you logged in.</p>
+      </div>
+    </div>
+
+    <!-- Right Form Section -->
+    <div class="md:w-1/2 flex items-center justify-center p-10 bg-white shadow-lg">
+      <div class="w-full max-w-md">
+
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+          Member <span class="text-red-600">Login</span>
+        </h2>
+        <p class="text-gray-500 text-center mb-8">
+          Access your training dashboard and stay on track.
+        </p>
+
+        <form action="#" method="POST" class="space-y-5">
+          <div>
+            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none" required>
+          </div>
+
+          <div>
+            <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+            <input type="password" id="password" name="password" placeholder="********"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none" required>
+          </div>
+
+          <div class="flex items-center justify-between text-sm">
+            <label class="flex items-center space-x-2 text-gray-600">
+              <input type="checkbox" class="accent-red-600">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="text-red-600 hover:underline">Forgot password?</a>
+          </div>
+
+          <button type="submit"
+            class="w-full bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition duration-300">
+            Log In
+          </button>
+        </form>
+
+        <p class="text-gray-500 text-sm text-center mt-6">
+          Don’t have an account?
+          <a href="/join now.html" class="text-red-600 hover:underline">Join now</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — BigWhale (Demo)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="bg-white shadow">
+    <div class="max-w-6xl mx-auto p-4">
+      <a href="index.html" class="font-bold">BigWhale Admin (Demo)</a>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-4">
+    <h1 class="text-2xl font-bold">Admin Dashboard (Demo)</h1>
+    <p class="text-sm text-slate-600">This demo page reads data saved to localStorage by the app (bookings/newsletter). Do not use as a production admin.</p>
+    <div class="mt-4 flex gap-2">
+      <button id="loadBtn" class="bg-sky-600 text-white px-3 py-2 rounded">Load Demo Data</button>
+      <button id="exportBtn" class="border px-3 py-2 rounded">Export CSV</button>
+    </div>
+
+    <pre id="output" class="mt-4 bg-white p-4 rounded shadow max-h-96 overflow-auto"></pre>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    document.getElementById('loadBtn').addEventListener('click', () => {
+      const pwd = prompt('Admin password (demo)');
+      if (pwd !== 'bigwhale-admin') return alert('Wrong password (demo).');
+      const bookings = JSON.parse(localStorage.getItem('bw_bookings') || '[]');
+      const newsletter = JSON.parse(localStorage.getItem('bw_newsletter') || '[]');
+      document.getElementById('output').textContent = JSON.stringify({bookings, newsletter}, null, 2);
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      const bookings = JSON.parse(localStorage.getItem('bw_bookings') || '[]');
+      if (!bookings.length) return alert('No bookings to export');
+      let csv = 'title,name,email,at\\n' + bookings.map(b => [b.title, b.name, b.email, b.at].map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\\n');
+      const blob = new Blob([csv], {type: 'text/csv'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'bookings.csv'; a.click();
+    });
+  </script>
+</body>
+</html>

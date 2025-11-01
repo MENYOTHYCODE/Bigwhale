@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BigWhale Gym — Prototype</title>
   <!-- Tailwind via CDN (for prototyping) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="TailwindLib.js"></script>
   <meta name="description" content="BigWhale — Strength, Community, Results. Gym prototype built with HTML, Tailwind CSS and vanilla JS." />
   <style>
     /* Small custom styles for demo */
@@ -13,54 +13,73 @@
     /* Simple carousel animation helper */
     .carousel-track { scroll-behavior: smooth; }
   </style>
+
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 </head>
 <body class="antialiased text-slate-900 bg-slate-50">
 
 <!-- Header / Nav -->
-<header class="bg-white shadow-sm sticky top-0 z-40">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="bg-white shadow-sm sticky top-0 z-40 relative">
+  <div  class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center gap-4">
         <a href="#home" class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-sky-600 to-indigo-600 flex items-center justify-center text-white font-bold">BW</div>
-          <span class="font-semibold text-lg">BigWhale</span>
+          <div class="w-[120px] mt-2 flex items-center justify-center text-white font-bold"><img src="/Assets/Big_whales_finess-removebg-preview.png" alt=""></div>
+          
         </a>
       </div>
 
-      <nav class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#classes" class="hover:text-sky-600">Classes</a>
-        <a href="#pricing" class="hover:text-sky-600">Pricing</a>
-        <a href="#trainers" class="hover:text-sky-600">Trainers</a>
-        <a href="#programs" class="hover:text-sky-600">Programs</a>
-        <a href="#contact" class="hover:text-sky-600">Contact</a>
+      <!-- NAVIGATION -->
+      <nav class="hidden md:flex space-x-6 text-sm font-medium relative" id="nav-menu">
+        <button class="hover:text-blue-400 transition" data-menu="cardio">Cardio Equipment ▾</button>
+        <button class="hover:text-blue-400 transition" data-menu="membership">Membership ▾</button>
+        <button class="hover:text-blue-400 transition" data-menu="programs">Programs ▾</button>
+        <button class="hover:text-blue-400 transition" data-menu="apps">Apps ▾</button>
+        <button class="hover:text-blue-400 transition" data-menu="accessories">Accessories ▾</button>
+        <a href="#trainers" class="hover:text-blue-400 transition">Trainers</a>
+        <a href="#gallery" class="hover:text-blue-400 transition">Gallery</a>
+        <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
       </nav>
 
-      <div class="flex items-center gap-3">
-        <button id="trialBtn" class="hidden md:inline-block bg-sky-600 text-white px-4 py-2 rounded-md shadow">Start Free Trial</button>
-        <button id="mobileMenuBtn" class="md:hidden p-2" aria-label="Open menu"> 
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-        </button>
+       <!-- CTA Button -->
+      <a href="join now.html" class="hidden md:inline-block bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg font-semibold transition">
+        Join Now
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-2xl focus:outline-none z-50 relative">☰</button>
+
+    </div>
+
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="fixed top-0 right-0 h-full w-64 bg-white transform translate-x-full transition-all opacity-0 duration-300 md:hidden shadow-x z-40">
+      <div class="px-4 py-3 flex flex-col gap-2">
+        <a href="#classes" class="py-2">Classes</a>
+        <a href="#pricing" class="py-2">Pricing</a>
+        <a href="#trainers" class="py-2">Trainers</a>
+        <a href="#programs" class="py-2">Programs</a>
+        <a href="#contact" class="py-2">Contact</a>
+        <button id="mobileTrial" class="mt-2 bg-sky-600 text-white px-4 py-2 rounded-md">Start Free Trial</button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden hidden border-t">
-    <div class="px-4 py-3 flex flex-col gap-2">
-      <a href="#classes" class="py-2">Classes</a>
-      <a href="#pricing" class="py-2">Pricing</a>
-      <a href="#trainers" class="py-2">Trainers</a>
-      <a href="#programs" class="py-2">Programs</a>
-      <a href="#contact" class="py-2">Contact</a>
-      <button id="mobileTrial" class="mt-2 bg-sky-600 text-white px-4 py-2 rounded-md">Start Free Trial</button>
-    </div>
-  </div>
+  <!-- DROPDOWN CONTAINER -->
+  <div id="dropdownContainer" class="absolute mt-3 left-1/2 hidden opacity-0 transform -translate-x-1/2 transition-all duration-300 ease-out bg-gray-100"></div>
 </header>
 
 <!-- HERO -->
-<section id="home" class="hero-bg text-white py-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<section id="home" class="hero-bg text-white py-24 h-screen  relative">
+  <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+    <source src="Assets/herosec copy.mp4" type="video/mp4" />
+  </video>
+
+  <div class="absolute inset-0 bg-black/70"></div>
+
+  <div class="max-w-7xl relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+    <div  class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div>
         <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">BigWhale — Build Strength. Gain Confidence.</h1>
         <p class="mt-4 text-lg max-w-xl">Lagos' premier strength & community gym. Certified coaches. 24/7 access. Programs for every level.</p>
@@ -83,12 +102,44 @@
         </div>
       </div>
     </div>
+    <div data-aos="zoom-in" class="mt-4 flex flex-col absolute">
+      <p class="text-white text-3xl font-bold">The new lineup</p>
+      <p class="text-white text-lg">Explore our premium cardio equipment collection.</p>  
+      <div class="mt-6 flex gap-3">
+        <div class="bg-white rounded-lg p-2 transition-transform duration-300 hover:scale-105 backdrop-blur-sm hover:shadow-2xl">
+          <img src="Assets/treadmill3.png" class=" object-cover rounded-lg bg-gray-200 shadow-md">
+          <p class="text-black text-xl font-bold mt-2">Treadmills</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-2 transition-transform duration-300 hover:scale-105 backdrop-blur-sm hover:shadow-2xl">
+          <img src="Assets/treadmill3.png" class=" object-cover rounded-lg bg-gray-200 shadow-md">
+          <p class="text-black text-xl font-bold mt-2">Treadmills</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-2 transition-transform duration-300 hover:scale-105 backdrop-blur-sm hover:shadow-2xl">
+          <img src="Assets/treadmill3.png" class=" object-cover rounded-lg bg-gray-200 shadow-md">
+          <p class="text-black text-xl font-bold mt-2">Treadmills</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-2 transition-transform duration-300 hover:scale-105 backdrop-blur-sm hover:shadow-2xl">
+          <img src="Assets/treadmill3.png" class=" object-cover rounded-lg bg-gray-200 shadow-md">
+          <p class="text-black text-xl font-bold mt-2">Treadmills</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-2 transition-transform duration-300 hover:scale-105 backdrop-blur-sm hover:shadow-2xl">
+          <img src="Assets/treadmill3.png" class=" object-cover rounded-lg bg-gray-200 shadow-md">
+          <p class="text-black text-xl font-bold mt-2">Treadmills</p>
+        </div>
+        <!-- <a href="#treads" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium text-white transition">Treadmills</a>
+        <a href="#rows" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium text-white transition">Rowing Machines</a>
+        <a href="#bikes" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md font-medium text-white transition">Exercise Bikes</a> -->
+    </div>
   </div>
 </section>
 
 <!-- Quick Benefits -->
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative mt-60 "> 
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 ">
     <div class="bg-white p-6 rounded-lg shadow-sm">
       <h3 class="font-semibold">Certified Coaches</h3>
       <p class="mt-2 text-sm text-slate-600">Personalised plans from highly qualified trainers.</p>
@@ -112,7 +163,7 @@
       <p class="text-sm text-slate-600 mt-2">Choose the right plan — switch anytime.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div data-aos="zoom-in-right" class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Basic -->
       <div class="bg-white p-6 rounded-lg shadow">
         <h4 class="font-semibold">Basic</h4>
@@ -154,7 +205,7 @@
 
 <!-- Classes & Schedule -->
 <section id="classes" class="py-12">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div data-aos="zoom-in-left" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center mb-6">
       <div>
         <h2 class="text-2xl font-bold">Classes & Schedule</h2>
@@ -208,43 +259,54 @@
 <!-- Trainers -->
 <section id="trainers" class="py-12 bg-slate-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-8">
+    <div data-aos="zoom-in" class="text-center mb-8">
       <h2 class="text-2xl font-bold">Our Trainers</h2>
       <p class="text-sm text-slate-600">Certified professionals helping members reach their goals.</p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
       <!-- trainer card -->
-      <div class="bg-white rounded-lg p-4 shadow">
-        <img src="https://images.unsplash.com/photo-1554284126-aa88f22d8b85?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
-        <h4 class="mt-3 font-semibold">Aisha Okoye</h4>
+      <div data-aos="zoom-in-left" class="bg-white rounded-lg p-4 shadow">
+        <img src="Assets/trainer1.webp" alt="Trainer" class="w-full h-60 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Ava Martinez</h4>
         <p class="text-sm text-slate-600">Strength coach • MSc Sports Science</p>
         <p class="mt-2 text-sm">Specialties: powerlifting, hypertrophy, female strength.</p>
         <div class="mt-3 flex gap-2">
-          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Aisha')">Profile</button>
-          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Aisha')">Book 1:1</button>
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Ava')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Ava')">Book 1:1</button>
         </div>
       </div>
 
-      <div class="bg-white rounded-lg p-4 shadow">
-        <img src="https://images.unsplash.com/photo-1546484959-f5e5f02d7b3b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
-        <h4 class="mt-3 font-semibold">Emeka Chukwu</h4>
+      <div data-aos="zoom-in" class="bg-white rounded-lg p-4 shadow">
+        <img src="Assets/trainer2.webp" alt="Trainer" class="w-full h-60 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Jake Thompson</h4>
         <p class="text-sm text-slate-600">Conditioning coach • BSc PE</p>
         <p class="mt-2 text-sm">Specialties: HIIT, endurance, group classes.</p>
         <div class="mt-3 flex gap-2">
-          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Emeka')">Profile</button>
-          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Emeka')">Book 1:1</button>
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Jake')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Jake')">Book 1:1</button>
         </div>
       </div>
 
-      <div class="bg-white rounded-lg p-4 shadow">
-        <img src="https://images.unsplash.com/photo-1545167622-3e6e3d2bf9a6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="Trainer" class="w-full h-40 object-cover rounded">
-        <h4 class="mt-3 font-semibold">Chioma N.</h4>
+      <div data-aos="zoom-in" class="bg-white rounded-lg p-4 shadow">
+        <img src="Assets/trainer3.webp" alt="Trainer" class="w-full h-60 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Coach Blaze</h4>
         <p class="text-sm text-slate-600">Mobility & rehab specialist</p>
         <p class="mt-2 text-sm">Specialties: rehab, mobility, injury prevention.</p>
         <div class="mt-3 flex gap-2">
-          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Chioma')">Profile</button>
-          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Chioma')">Book 1:1</button>
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Coach')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Coach')">Book 1:1</button>
+        </div>
+      </div>
+
+      <div data-aos="zoom-in-right" class="bg-white rounded-lg p-4 shadow">
+        <img src="Assets/trainer4.webp" alt="Trainer" class="w-full h-60 object-cover rounded">
+        <h4 class="mt-3 font-semibold">Ethan Brooks</h4>
+        <p class="text-sm text-slate-600">Mobility & rehab specialist</p>
+        <p class="mt-2 text-sm">Specialties: rehab, mobility, injury prevention.</p>
+        <div class="mt-3 flex gap-2">
+          <button class="flex-1 border rounded px-3 py-1 text-sm" onclick="viewProfile('Ethan')">Profile</button>
+          <button class="bg-sky-600 text-white px-3 py-1 rounded text-sm" onclick="bookTrainer('Ethan')">Book 1:1</button>
         </div>
       </div>
     </div>
@@ -252,21 +314,50 @@
 </section>
 
 <!-- Gallery / Facilities -->
-<section id="gallery" class="py-12">
+<section id="gallery" class="py-12 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-2xl font-bold mb-4">Facilities & Gallery</h2>
+    <h2 data-aos="zoom-in" class="text-2xl font-bold mb-6 text-gray-800">Facilities & Gallery</h2>
+
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <img src="https://images.unsplash.com/photo-1546484959-f5e5f02d7b3b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
-      <img src="https://images.unsplash.com/photo-1546484959-0b9e2b1a6a3f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
-      <img src="https://images.unsplash.com/photo-1541534401786-3f4c0b2b8f9b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
-      <img src="https://images.unsplash.com/photo-1546484959-d5c6a6b1d8ad?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=" alt="" class="w-full h-40 object-cover rounded">
+      <a href="Gallery.html" data-aos="zoom-in-left" class="group relative overflow-hidden rounded-lg">
+        <img src="Assets/gymfloor1.avif"
+             alt="Gym Floor" class="w-full h-40 object-cover group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <span class="text-white font-semibold">See More</span>
+        </div>
+      </a>
+
+      <a href="Gallery.html"  data-aos="zoom-in" class="group relative overflow-hidden rounded-lg">
+        <img src="Assets/cardio.webp"
+             alt="Cardio Zone" class="w-full h-40 object-cover group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <span class="text-white font-semibold">See More</span>
+        </div>
+      </a>
+
+      <a href="Gallery.html" data-aos="zoom-in" class="group relative overflow-hidden rounded-lg">
+        <img src="Assets/weightroom.webp"
+             alt="Weight Room" class="w-full h-40 object-cover group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <span class="text-white font-semibold">See More</span>
+        </div>
+      </a>
+
+      <a href="gallery-studio.html" data-aos="zoom-in-right" class="group relative overflow-hidden rounded-lg">
+        <img src="Assets/studio.avif"
+             alt="Studio Classes" class="w-full h-40 object-cover group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <span class="text-white font-semibold">See More</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
+
 <!-- Programs -->
 <section id="programs" class="py-12 bg-slate-50">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div data-aos="fade-up" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl font-bold mb-4">Programs</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="bg-white p-4 rounded shadow">
@@ -292,7 +383,7 @@
 
 <!-- Testimonials -->
 <section id="testimonials" class="py-12">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <div data-aos="fade-up" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h2 class="text-2xl font-bold mb-4">Success Stories</h2>
     <div class="carousel-track flex gap-4 overflow-x-auto py-4">
       <blockquote class="min-w-[80%] md:min-w-[40%] bg-white p-6 rounded shadow">
@@ -310,7 +401,7 @@
 
 <!-- Blog teaser -->
 <section id="blog" class="py-12 bg-slate-50">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div data-aos="fade-up" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl font-bold mb-4">From the Blog</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <article class="bg-white p-4 rounded shadow">
@@ -331,7 +422,7 @@
 
 <!-- Contact -->
 <section id="contact" class="py-12">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div data-aos="fade-up" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl font-bold mb-4">Contact & Locations</h2>
     <div class="bg-white p-6 rounded shadow grid grid-cols-1 md:grid-cols-2 gap-4">
       <form id="contactForm" class="space-y-4">
@@ -350,7 +441,7 @@
         <button type="submit" class="bg-sky-600 text-white px-4 py-2 rounded">Send Message</button>
       </form>
 
-      <div>
+      <div data-aos="zoom-in">
         <h4 class="font-semibold">BigWhale Lagos</h4>
         <p class="text-sm text-slate-600">123 Harbour Road, Lagos</p>
         <p class="text-sm text-slate-600">Mon — Sun: 5:00 AM — 11:00 PM</p>
@@ -391,7 +482,7 @@
 
 
 <!-- Booking Modal (simple) -->
-<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
+<div id="bookingModal" data-aos="fade-up" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center hidden z-50">
   <div class="bg-white rounded-lg w-full max-w-md p-6">
     <h3 class="text-lg font-semibold mb-2">Book Class</h3>
     <p id="bookingTitle" class="text-sm text-slate-600 mb-4"></p>
@@ -407,8 +498,20 @@
   </div>
 </div>
 
-<!-- Minimal Scripts -->
+<p class="text-xl font-semibold text-white p-6 ">Cross Training Treads+</p>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
+  AOS.init({
+    duration: 1000, // animation duration in ms
+    once: false, // whether animation should happen only once
+    offset: 100, // how far the element should be from viewport before it starts animating
+  });
+</script>
+
+
+<!-- <script>
+  
+
   // small helpers and demo interactions
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -485,7 +588,7 @@
     const pad=(n)=>String(n).padStart(2,'0');
     return d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
   }
-
-</script>
+</script> -->
+<script src="BigWhalesFitness.js"></script>
 </body>
 </html>
